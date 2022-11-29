@@ -60,3 +60,10 @@ jobs:
           context: .
           push: true
           tags: evammayer/app:${{ steps.vars.outputs.sha_short }}
+
+      # Run SonarCloud scan
+      - name: SonarCloud scan
+        uses: SonarSource/sonarcloud-github-action@v1.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
